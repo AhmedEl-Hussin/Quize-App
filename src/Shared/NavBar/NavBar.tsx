@@ -2,7 +2,7 @@
 export default function NavBar() {
   return (
     <>
-    <div className="flex   ">
+    <div className="flex ">
     <div className=" pt-3  text-center  w-1/6 border-r-[1px]">
       <i  className="fa-solid fa-bars pr-5"></i> <i className="fa-solid fa-circle-check"></i><i   className="fa-solid fa-circle-xmark"></i>
       </div>

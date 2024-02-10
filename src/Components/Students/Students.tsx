@@ -2,6 +2,7 @@ import desk from '../../assets/Quiz img (1).png'
 import group from '../../assets/img (1).png'
 import userImg from '../../assets/user img.png'
 export default function Students() {
+
   const students=[
     {id:'1',Name:"Emanual James",Rank:"2nd",Score:"87"}
   ,{id:'2',Name:"Alice Jasmine",Rank:"12th",Score:"77"}
@@ -17,16 +18,15 @@ export default function Students() {
   ]
   return (
     <>
-      <div className="flex  ">
+      <div className="flex">
         {/* EXAMS */}
         <div className="border w-2/3 mt-2 mx-2 rounded-xl">
           <h3 className="pl-3">   Upcoming 5 quizzes </h3>
-{exams.map((exam,id)=><>
-  <div key={id} className=' m-4' >
+          {exams.map((exam,id)=><>
+        <div key={id} className=' m-4' >
             <div className='border rounded-xl '>
               <div className='flex '>
                 <img src={exam.img} className='w-2/12' alt="" />
-           
                 <div className=' ml-2 mt-4 w-5/6'>
                   <h3>{exam.ExamName}</h3>
                   <span className='border-r pr-1'>{exam.Date}</span> <span>{exam.Time}</span>
@@ -42,18 +42,12 @@ export default function Students() {
                 </div>
 
               </div>
-
-
-
             </div>
           </div>
-</>)}
-
-  
-
-       
+      </>)}
   
         </div>
+        
         {/*STUDENTS*/}
         <div className="border w-1/3 mt-2 mr-3 rounded-xl">
           <h3 className="pl-3">   Top 5 Students </h3>

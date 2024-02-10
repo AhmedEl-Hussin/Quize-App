@@ -20,7 +20,7 @@ export default function Login() {
           </div>
         </Link>
         <div className="signup w-1/2"></div>
-      </div>
+      </div> 
 
       <form className="my-12">
 
@@ -35,7 +35,7 @@ export default function Login() {
             <input
               type="text"
               id="email"
-              className="block px-2  flex-1 border-0 bg-transparent py-1.5 pl-1 text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+              className="block px-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
               placeholder="Type your email"
             />
           </div>
@@ -65,9 +65,9 @@ export default function Login() {
         >
           Sign In{" "}
           <i className="fa-solid fa-check ms-1 text-white p-1 rounded-full bg-black"></i>
-        </button>
+          </button>
 
-<p >Forgot password? <Link className="text-secondry" to='/requsetRestPass'>click here</Link></p>
+          <p>Forgot password? <Link className="text-secondry" to='/requsetRestPass'>click here</Link></p>
         </div>
       </form>
     </>

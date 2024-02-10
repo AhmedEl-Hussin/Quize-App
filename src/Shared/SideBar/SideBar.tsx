@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 export default function SideBar() {
   return (
@@ -11,27 +12,28 @@ export default function SideBar() {
       <div className=" bg-[#FFEDDF] w-[30px] h-[30px]">
     <i className="fa-solid fa-house fa-xl mt-2"></i>
     </div>
-    <li>DashBoard</li>
+    <Link to=''>DashBoard</Link>
+
     </div>
     <div className=" border-b py-4  flex pl-5  hover:border-r-4 hover:border-black hover:border-b-0 ">
       <div className="  bg-[#FFEDDF] w-[30px] h-[30px]">
       <i className=" fa-solid fa-users-line fa-xl mt-3"></i>
       </div>
-    <li>Groups</li>
+    <Link to='groups'>Groups</Link>
 
     </div>
     <div className=" border-b py-4 flex pl-5 hover:border-r-4 hover:border-black hover:border-b-0" >
     <div className="  bg-[#FFEDDF] w-[30px] h-[30px]">
     <i className="fa-brands fa-readme fa-xl mt-3"></i>
     </div>
-    <li>Quizzes</li>
+    <Link to='quizzes'>Quizzes</Link>
     </div>
 
     <div className=" border-b py-36 flex pl-5  hover:border-r-4 hover:border-black hover:border-b-0">
   <div className="  bg-[#FFEDDF] w-[30px] h-[30px]">
     <i className="fa-solid fa-dice"></i>
     </div>
-    <li>Results</li>
+    <Link to='results'>Results</Link>
     </div>
     <div className=" border-b py-4 flex pl-5  hover:border-r-4 hover:border-black hover:border-b-0" >
     <div className="  bg-[#FFEDDF] w-[30px] h-[30px]">
