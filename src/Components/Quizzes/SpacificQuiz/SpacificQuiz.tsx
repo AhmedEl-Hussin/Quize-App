@@ -24,7 +24,7 @@ export default function SpacificQuiz() {
   const { headers } = useSelector((state: any) => state.userData);
   const [quiz, setQuiz] = useState<quiz>();
   useEffect(() => {
-    getData({ path: `quiz/${quizId}`, headers, setState: setQuiz });
+     getData({ path: `quiz/${quizId}`, headers, setState: setQuiz });
   }, []);
 
   const [modalState, setModalState] = useState("close");
@@ -118,6 +118,7 @@ export default function SpacificQuiz() {
         body={
           modalState == "update" ? (
             <QuizModal
+            setQuiz={setQuiz}
               quiz={quiz}
               setCode={setCode}
               setModalState={setModalState}

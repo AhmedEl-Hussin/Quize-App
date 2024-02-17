@@ -29,7 +29,6 @@ export default function ProtectedRoute({userData,children}:Prop) {
     }, [dispatch]);
 
 
-    
     if (!userData?.accessToken ) {
         return <Navigate to="/login"/>
     }else{

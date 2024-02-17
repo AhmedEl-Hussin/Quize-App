@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { baseUrl } from "../../../ApiUtls/ApiUtls";
+import { baseUrl, getData } from "../../../ApiUtls/ApiUtls";
 import ErrorMessage from "../../../Shared/ErrorMessage/ErrorMessage";
 import Loading from "../../../Shared/Loading/Loading";
 import { quiz } from "../SpacificQuiz/SpacificQuiz";
+import { useParams } from "react-router-dom";
 interface Group {
   students: [string];
   status: string;
@@ -20,6 +21,7 @@ interface QuizModalProp {
   handleClose?: () => void;
   setModalState: React.Dispatch<React.SetStateAction<string>>;
   setCode: React.Dispatch<React.SetStateAction<string>>;
+  setQuiz: React.Dispatch<React.SetStateAction<string>>;
 }
 interface formData {
   title?: string;
@@ -42,11 +44,11 @@ interface formData {
   code?:string,
   _id?:string,
 }
-export default function QuizModal({ setModalState ,setCode,quiz}: QuizModalProp) {
+export default function QuizModal({ setModalState ,setCode,quiz,setQuiz}: QuizModalProp) {
+  const { quizId } = useParams();
   let {groups} = useSelector((state: any) => state.groups);
   const { headers } = useSelector((state: any) => state.userData);
   const [isLoading, setIsLoading] = useState(false);
-
   const durationAndQuestionNumber: number[] = [
     1,5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60,
   ];
@@ -55,11 +57,8 @@ export default function QuizModal({ setModalState ,setCode,quiz}: QuizModalProp)
   const category: string[] = [
     "FE",
     "BE",
-    "Mobile application",
-    "Flutter",
-    "AI",
+    "DO",
   ];
-
   const {
     register,
     handleSubmit,
@@ -98,8 +97,6 @@ export default function QuizModal({ setModalState ,setCode,quiz}: QuizModalProp)
         setIsLoading(false);
       });
   };
-
-
   const updateQuiz=(data:formData)=>{
     setIsLoading(true);
     delete data._id
@@ -125,7 +122,7 @@ export default function QuizModal({ setModalState ,setCode,quiz}: QuizModalProp)
       .put(`${baseUrl}/quiz/${quiz?._id}`, data, headers)
       .then((res) => {
         console.log(res);
-        
+        getData({ path: `quiz/${quizId}`, headers, setState: setQuiz });
         toast.success(res.data.message);
         setCode(res.data.data.code);
         setModalState("quiz-code");
