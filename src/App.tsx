@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, createHashRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
 import ChangePassword from "./Components/ChangePassword/ChangePassword";
@@ -30,7 +30,7 @@ function App() {
   let { userData } = useSelector((state: any) => state.userData);
 
 
-  const routes = createBrowserRouter([
+  const routes = createHashRouter([
     {
       path: "dashboard",
       element: (
