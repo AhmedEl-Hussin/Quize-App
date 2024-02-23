@@ -22,7 +22,7 @@ export default function Quiz() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const [quizId, setQuizId] = useState("");
+
   const { upcomingQuizzes } = useSelector(
     (state: any) => state.upcomingQuizzes
   );
@@ -93,6 +93,7 @@ const [isLoading, setisLoading] = useState(false)
               <NoData />
             )}
 
+
             {completedQuizzes?.length == 0 ? (
               <div className="h-[30vh] w-full flex items-center justify-center text-5xl">
               <Loading />
@@ -108,6 +109,7 @@ const [isLoading, setisLoading] = useState(false)
                             <NoData />
                           </div>
             )}
+
           </div>
         ) : (
           <NoData />
