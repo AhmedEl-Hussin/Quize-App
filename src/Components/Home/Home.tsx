@@ -49,57 +49,61 @@ export default function Home() {
           )}
         </div>
 
-        <div className="border students mt-2 rounded-xl w-[70%] px-4 h-screen">
-          <h3 className="pl-3 mt-2 font-bold"> Top 5 Students </h3>
-          {!topStudents ? (
-            <div className="flex items-center justify-center h-[50%] w-full text-5xl ">
-              <Loading />
-            </div>
-          ) : topStudents ? (
-            topStudents?.map((student: student, id: number) => (
-              <div key={id}>
-                <div className=" my-4 ml-1 ">
-                  <div className="border rounded-xl ">
-                    <div className="flex ">
-                      <img src={userImg} className="w-2/12" alt="" />
-                      <div className=" ml-2 mt-2 w-5/6">
-                        <div className="flex justify-between">
-                          <h3 className="font-bold">
-                            {student.first_name}
-                            {student.last_name}
-                          </h3>
-                          <button
-                            onClick={() => getStudentById(student?._id)}
-                            className="hover:bg-zing-950 duration-500 hover:text-gray-400"
-                          >
-                            <i className="fa-solid fa-circle-arrow-right mt-[5px]  pr-2 mr-3   "></i>
-                          </button>
+        <div className="px-3">
+          <div className="border students mt-2 rounded-xl w-[100%] px-2 ">
+            <h3 className="pl-3 mt-2 font-bold"> Top 5 Students </h3>
+            {!topStudents ? (
+              <div className="flex items-center justify-center h-[50%] w-full text-5xl ">
+                <Loading />
+              </div>
+            ) : topStudents ? (
+              topStudents?.map((student: student, id: number) => (
+                <div key={id}>
+                  <div className=" my-4 ml-1 ">
+                    <div className="border rounded-xl ">
+                      <div className="flex ">
+                        <div className="image w-[15%]">
+                          <img src={userImg} className="w-[100%]" alt="" />
                         </div>
-                        <div className="flex">
-                          <h5 className="border-r pr-2 ">
-                            Group:<span> {student.group?.name} </span>
-                          </h5>
-                          <h5 className="pl-2">
-                            Average score :
-                            <span>
-                              {student && student.avg_score
-                                ? `${student?.avg_score}%`
-                                : "90"}
-                              %
-                            </span>
-                          </h5>
+                        <div className=" ml-2 mt-2 w-5/6">
+                          <div className="flex justify-between">
+                            <h3 className="font-bold">
+                              {student.first_name}
+                              {student.last_name}
+                            </h3>
+                            <button
+                              onClick={() => getStudentById(student?._id)}
+                              className="hover:bg-zing-950 duration-500 hover:text-gray-400"
+                            >
+                              <i className="fa-solid fa-circle-arrow-right mt-[5px]  pr-2 mr-3   "></i>
+                            </button>
+                          </div>
+                          <div className="flex">
+                            <h5 className="border-r pr-1 ">
+                              Group:<span> {student.group?.name} </span>
+                            </h5>
+                            <h5 className="pl-1">
+                              Average score :
+                              <span>
+                                {student && student.avg_score
+                                  ? `${Number(student?.avg_score).toFixed(2)}`
+                                  : "0"}
+                                %
+                              </span>
+                            </h5>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              ))
+            ) : (
+              <div className="h-[50vh] flex items-center justify-center">
+                <NoData />
               </div>
-            ))
-          ) : (
-            <div className="h-[50vh] flex items-center justify-center">
-              <NoData />
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         <SharedModal

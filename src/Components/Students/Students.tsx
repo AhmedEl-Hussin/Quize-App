@@ -8,6 +8,7 @@ import SharedModal from "../../Shared/Modal/Modal";
 import NoData from "../../Shared/NoData/NoData";
 import AddStudentToGroup from "./AddStudentToGroup/AddStudentToGroup";
 import StudentCard from "../StudentCard/StudentCard";
+import { useNavigate } from "react-router-dom";
 
 export interface studentInfo {
   email: string;
@@ -26,7 +27,7 @@ export default function Students() {
   const [groups, setGroup] = useState(new Array());
   const [groupId, setGroupId] = useState<string>();
   const [activeGroupId, setActiveGroupId] = useState(groups[0]?._id);
-
+  const navigate=useNavigate();
   const handleOpenModal = (action: string) => {
     setModalAction(action);
   };
@@ -55,13 +56,19 @@ export default function Students() {
     getStudentsFromGroup(id);
   };
   const getStudentsFromGroup = (id: string) => {
+    if (!id) {
+      toast.info("Create the first group.");
+      navigate("/dashboard/groups")
+    }
     axios
       .get(`${baseUrl}/group/${id}`, headers)
       .then((res) => {
         setStudents(res.data.students);
       })
       .catch((err) => {
-console.log(err);
+        // toast.error(err.response.data.message)
+        console.log(err);
+        
       })
       .finally(() => {
         setIsLoading(false);
@@ -136,9 +143,6 @@ console.log(err);
                     </button>
                   ))}
                 </div>
-                <div>
-                </div>
-                <div></div>
 
                 {/* display students */}
                 {isLoading ? (
@@ -149,7 +153,12 @@ console.log(err);
                   <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-4  mx-5  pr-4 ">
                     {students.map((student: studentInfo, index) => (
                       <div key={index} className="flex flex-col ml-4 mt-4">
-                        <StudentCard activeGroupId={activeGroupId} getGroupById={getGroupById} student={student} groups={groups} />
+                        <StudentCard
+                          activeGroupId={activeGroupId}
+                          getGroupById={getGroupById}
+                          student={student}
+                          groups={groups}
+                        />
                       </div>
                     ))}
                   </div>
@@ -167,28 +176,27 @@ console.log(err);
       </div>
 
       <SharedModal
-
-                    show={modalAction === "add"}
-                    title="Add New Student"
-                    onSave={() => {
-                      addStudentToGroup();
-                    }}
-                    onClose={closeModal}
-                    body={
-                      <>
-                        {modalAction == "add" ? (
-                          <AddStudentToGroup
-                          activeGroupId={activeGroupId}
-                          getGroupById={getGroupById}
-                            isLoading={addModalLoading}
-                            selectedStudentId={setUserId}
-                          />
-                        ) : (
-                          ""
-                        )}
-                      </>
-                    }
-                  />
+        show={modalAction === "add"}
+        title="Add New Student"
+        onSave={() => {
+          addStudentToGroup();
+        }}
+        onClose={closeModal}
+        body={
+          <>
+            {modalAction == "add" ? (
+              <AddStudentToGroup
+                activeGroupId={activeGroupId}
+                getGroupById={getGroupById}
+                isLoading={addModalLoading}
+                selectedStudentId={setUserId}
+              />
+            ) : (
+              ""
+            )}
+          </>
+        }
+      />
     </>
   );
 }

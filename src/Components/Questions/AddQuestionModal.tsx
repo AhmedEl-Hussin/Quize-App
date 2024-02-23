@@ -192,7 +192,7 @@ body={
                 </div>
                 <div className="relative mt-3 flex  ">
                   <label className=" left-0 flex  px-3 bg-authImage text-center rounded-l-3xl">
-                    <span  className="text-black text-md font-semibold pt-2 ">
+                    <span  className="text-black text-md font-semibold py-1 ">
                       Right Answer
                     </span>
                   </label>

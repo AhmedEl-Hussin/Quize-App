@@ -51,11 +51,8 @@ export default function AddStudentToGroup({selectedStudentId,isLoading}:AddStude
       <Loading/> 
     </div>:    <div className="my-1">
       <div className="relative mt-2 rounded-md shadow-sm text-center">
-       
-        
          <Input title='name'
          handleChange={handleInputChange}
-         
          value={nameInput} />
       </div>
     </div>}

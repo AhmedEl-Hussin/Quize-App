@@ -108,18 +108,18 @@ export default function Questions() {
                           <td className="py-3">{question?.answer}</td>
                           <td className="py-3">
                             <div className=" text-orange-600">
-                              <i
+                              <button
                                 onClick={() => {
                                   handleUpdateModal(question);
                                 }}
                                 className="fa-solid mr-4 fa-pen-to-square"
-                              ></i>
-                              <i
+                              ></button>
+                              <button
                                 onClick={() => {
                                   handleDeleteModal(question?._id);
                                 }}
                                 className="fa-solid fa-trash-can"
-                              ></i>
+                              ></button>
                             </div>
                           </td>
                         </tr>
