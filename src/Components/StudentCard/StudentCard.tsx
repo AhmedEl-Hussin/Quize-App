@@ -36,6 +36,7 @@ export default function StudentCard({
   const [modalState, setModalState] = useState<string>("close");
   const { fetchedData: studentData, getData, isLoading } = useFetchData();
   const [groupId, setGroupId] = useState();
+  const [updateLoading, setupdateLoading] = useState(false)
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -58,6 +59,7 @@ export default function StudentCard({
   };
 
   const handleUpdate = () => {
+    setupdateLoading(true);
     axios
       .put(
         `https://upskilling-egypt.com:3005/api/student/${studentId}/${groupId}`,{},headers
@@ -67,9 +69,10 @@ export default function StudentCard({
         toast.success(res.data.message)
       })
       .catch((err) => {
-        console.log(headers);
         toast.error(err.response.data.message)
-      });
+      }).finally(()=>{
+        setupdateLoading(false)
+      })
   };
 
 
@@ -220,17 +223,19 @@ const [loadingOfDeleteModal, setLoadingOfDeleteModal] = useState(false);
         onSave={handleUpdate}
         onClose={closeModal}
         body={
-          <div className="text-center">
+updateLoading?<div className="p-2 flex text-5xl items-center justify-center">
+  <Loading/>
+</div>:          <div className="text-center">
             <select
-              className="w-[90%] bg-authImage"
+              className="w-[90%] bg-authImage rounded-2xl px-2 py-1 border"
               onChange={(eventInfo) => {
                 setGroupId(eventInfo.target.value);
               }}
             >
-              <option>Select Group</option>
+              <option className="bg-white">Select Group</option>
               {groups.map((group, idx) => (
-                <option key={idx} value={group._id}>
-                  {group.name}{" "}
+                <option className="bg-white" key={idx} value={group._id}>
+                  {group.name}
                 </option>
               ))}
             </select>

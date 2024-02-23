@@ -39,10 +39,7 @@ export default function NavBar() {
                 {role!=="Student"?                <button onClick={showAddModal} className="border rounded-2xl duration-500 hover:bg-zinc-950 hover:text-gray-50 border-black px-1 ">
                   <i className="fa-solid mx-2 fa-clock"></i>
                   <span className="mx-1">New Quiz</span>
-                </button>:                <button className="border rounded-2xl duration-500 hover:bg-zinc-950 hover:text-gray-50 border-black px-1 ">
-                  <i className="fa-solid mx-2 fa-clock"></i>
-                  <span className="mx-1">Join Quiz</span>
-                </button>}
+                </button>:""}
 
               </div>
             </div>

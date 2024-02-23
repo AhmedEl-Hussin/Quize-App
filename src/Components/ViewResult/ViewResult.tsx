@@ -5,20 +5,20 @@ export default function ViewResult() {
   const { viewResults:name } = useParams();
 
   const DataTable=[{
-    studentName:"Hossam",
+    studentName:"Ahmd",
     Score:'17',
     Avg:'20',
     TimeSubmitted:"09:00",
    
   },{
-    studentName:"Hossam",
+    studentName:"Mahmoud",
     Score:'19',
     Avg:'20',
     TimeSubmitted:"09:00",
    
   },
   {
-    studentName:"Hossam",
+    studentName:"Mona",
     Score:'20',
     Avg:'20',
     TimeSubmitted:"09:00",
@@ -32,7 +32,7 @@ export default function ViewResult() {
    
   },
   {
-    studentName:"Hossam",
+    studentName:"Mustafa",
     Score:'17',
     Avg:'20',
     TimeSubmitted:"09:00",
@@ -43,7 +43,6 @@ export default function ViewResult() {
     <>
 
       <div className="resultsView px-3 w-full">
-
         <div className='mt-3 ml-1'>
           <Link to="/dashboard/results" className="m-2 font-semibold">
             Results <i className="fa-solid fa-angle-right text-secondry"></i>
@@ -56,7 +55,6 @@ export default function ViewResult() {
             <h5 className="text-lg font-semibold my-2 mx-2">
               Results
             </h5>
-
           </div>
           <div className="result ">
             <div className="overflow-x-auto p-3 ">

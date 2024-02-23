@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link ,useLocation} from "react-router-dom";
+
 interface Quiz {
   imageSrc: string;
   name: string;
@@ -15,6 +16,7 @@ export default function QuizCard({
   studentsEnrolled,
   id,
 }: Quiz) {
+  const location =useLocation();
   return (
     <div className="quizez m-3 my-4">
       <div className="first-quiz border flex rounded-xl">
@@ -33,7 +35,7 @@ export default function QuizCard({
             <h6 className="font-medium text-sm">
               No. of student’s enrolled: {studentsEnrolled}
             </h6>
-            <div className="open text-end">
+            {location.pathname!=="/student"?            <div className="open text-end">
               <Link
                 to={`/dashboard/${id}`}
                 className="border-1 hover:text-gray-50 hover:bg-zinc-900 duration-500 px-2 py-1 rounded-xl font-medium text-sm mx-3"
@@ -41,7 +43,8 @@ export default function QuizCard({
                 Open
                 <i className="fa-solid mx-1 fa-circle-arrow-right text-secondry"></i>
               </Link>
-            </div>
+            </div>:<></>}
+
           </div>
         </div>
       </div>

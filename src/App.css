@@ -4,3 +4,10 @@
 .css-wx7wi4{
     background-color: #FFEDDF;
 }
+.ps-menu-button{
+    transition: .4s;
+}
+.ps-menu-button:hover{
+    background-color: black !important;
+    color: white !important;
+}
