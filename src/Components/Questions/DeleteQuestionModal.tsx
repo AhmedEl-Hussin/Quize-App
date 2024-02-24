@@ -3,13 +3,19 @@ import React, { useState } from "react";
 import Loading from "../../Shared/Loading/Loading";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+interface DeleteQuestionModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  getAllQuestions: () => void;
+  id: string; 
+}
 
 export default function DeleteQuestionModal({
   isOpen,
   onClose,
   getAllQuestions,
   id
-}) {
+}:DeleteQuestionModalProps) {
   const [isloading, setIsLoading] = useState(false);
   const { userData } = useSelector((state: any) => state.userData);
   let reqHeaders=`Bearer ${userData?.accessToken}`

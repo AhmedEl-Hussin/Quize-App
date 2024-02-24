@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import Select from "react-select";
@@ -8,10 +9,14 @@ import { baseUrl } from "../../ApiUtls/ApiUtls";
 import ErrorMessage from "../../Shared/ErrorMessage/ErrorMessage";
 import Loading from "../../Shared/Loading/Loading";
 import SharedModal from "../../Shared/Modal/Modal";
-
-export default function AddGroup({ getGroups, isOpen, onClose }: any) {
+interface AddGroupProps {
+  getGroups: () => void; 
+  isOpen: boolean;
+  onClose: () => void; 
+}
+export default function AddGroup({ getGroups, isOpen, onClose }: AddGroupProps) {
   const { headers } = useSelector((state: any) => state.userData);
-  const [studentsList, setStudentsList] = useState([]);
+  const [studentsList, setStudentsList] =useState<{_id:string,first_name:string,last_name:string}[]>([]);
   const [isloading, setIsLoading] = useState(false);
   const [getStudentsLoading, setGetStudentsLoading] = useState(false)
   const [students, setStudents] = useState([]);
@@ -57,7 +62,7 @@ export default function AddGroup({ getGroups, isOpen, onClose }: any) {
         setValue("name", "");
       });
   };
-  const options = studentsList?.map((student: any) => ({
+  const options = studentsList?.map((student: {_id:string,first_name:string,last_name:string}) => ({
     value: student._id,
     label: `${student.first_name} ${student.last_name}`,
   }));
@@ -115,7 +120,7 @@ export default function AddGroup({ getGroups, isOpen, onClose }: any) {
                       </div>
         
                       <Select
-                        isMulti
+                        isMulti={true}
                         onChange={(selected: any) => {
                           setStudents(selected);
                         }}

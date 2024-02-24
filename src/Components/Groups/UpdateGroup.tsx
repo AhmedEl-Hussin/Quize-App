@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -7,13 +8,25 @@ import { baseUrl } from "../../ApiUtls/ApiUtls";
 import ErrorMessage from "../../Shared/ErrorMessage/ErrorMessage";
 import Loading from "../../Shared/Loading/Loading";
 import SharedModal from "../../Shared/Modal/Modal";
+interface UpdateGroupProps {
+  getGroups: () => void; 
+  isOpen: boolean;
+  onClose: () => void;
+  id: any;
+  group:GroupType,
+}
+interface GroupType {
+  _id: string;
+  name: string;
+  // Add other properties of group if needed
+}
 
 export default function UpdateGroup({
   getGroups,
   isOpen,
   onClose,
-  group,
-}: any) {
+  group
+}: UpdateGroupProps) {
   const [isloading, setIsLoading] = useState(false);
   const [studentsList, setStudentsList] = useState<any>();
   const { headers } = useSelector((state: any) => state.userData);
